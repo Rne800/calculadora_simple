@@ -1,0 +1,103 @@
+package expographlibs;
+
+/**
+ *
+ * @author Rene
+ */
+
+import java.awt.event.KeyAdapter; // quitar
+import java.awt.event.KeyEvent;  // quitar
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JOptionPane;
+import javax.swing.JButton;
+
+
+public class ExpoGraphLibs extends JFrame {
+    
+    JTextField txtSizeX;
+    JTextField txtSizeY;
+    JTextArea txt;
+    
+    public ExpoGraphLibs() {
+
+        setTitle("Librerias de Interfaz Grafica de Java");
+        setSize(800,800);
+        setLayout(null);
+        setLocationRelativeTo(null);
+        
+        txt = new JTextArea();
+        txt.setBounds(10,10,100,50);
+        
+        JLabel lblSizeX = new JLabel("Tamaño en X");
+        lblSizeX.setBounds(10,410,100,30);
+        txtSizeX = new JTextField();
+        txtSizeX.setText("100");
+        txtSizeX.setBounds(110,440,100,30);
+        
+        JLabel lblSizeY = new JLabel("Tamaño en X");
+        lblSizeY.setBounds(10,410,100,30);
+        txtSizeY = new JTextField();
+        txtSizeY.setText("100");
+        txtSizeY.setBounds(110,440,100,30);
+        
+        txtSizeX.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent event) {
+                if (event.getKeyCode() == 10) {
+                    try {
+                        int x = Integer.parseInt(txtSizeX.getText());
+                        int y = Integer.parseInt(txtSizeY.getText());
+                        
+                        if (y <= 400 && x <= 480) {
+                            txt.setSize(x,y);}
+                        else {
+                            JOptionPane.showMessageDialog(null, "Tmaño excedido.");
+                        }
+                        } catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, "No es número válido");
+                        }
+                    }
+            }
+        });
+        
+        txtSizeY.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent event) {
+                if (event.getKeyCode() == 10) {
+                    try {
+                        int x = Integer.parseInt(txtSizeX.getText());
+                        int y = Integer.parseInt(txtSizeY.getText());
+                        
+                        if (y <= 400 && x <= 480) {
+                            txt.setSize(x,y);}
+                        else {
+                            JOptionPane.showMessageDialog(null, "Tmaño excedido.");
+                        }
+                        } catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, "No es número válido");
+                        }
+                    }
+            }
+        });
+        
+        getContentPane().add(txt);
+        getContentPane().add(lblSizeX);
+        getContentPane().add(txtSizeX);
+        getContentPane().add(lblSizeY);
+        getContentPane().add(txtSizeY);
+        
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+        
+   
+    public static void main(String[] args) {
+        new ExpoGraphLibs();
+    }
+    
+}
